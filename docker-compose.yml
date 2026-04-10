@@ -1,0 +1,35 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "${HOST_OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+
+  bon-proxy:
+    build:
+      context: .
+    env_file:
+      - ./.docker/generated.env
+    volumes:
+      - ./.docker:/app/.docker:ro
+    ports:
+      - "${HOST_PROXY_PORT:-8000}:8000"
+    depends_on:
+      - ollama
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "${HOST_OPEN_WEBUI_PORT:-3000}:8080"
+    environment:
+      OPENAI_API_BASE_URL: http://bon-proxy:8000/v1
+      OPENAI_API_KEY: ${OPEN_WEBUI_API_KEY:-dummy}
+    volumes:
+      - open-webui-data:/app/backend/data
+    depends_on:
+      - bon-proxy
+
+volumes:
+  ollama-data:
+  open-webui-data:

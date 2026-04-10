@@ -1,0 +1,51 @@
+{
+  "stack": {
+    "host_ollama_port": 11434,
+    "host_proxy_port": 8000,
+    "host_open_webui_port": 3000,
+    "open_webui_api_key": "dummy"
+  },
+  "proxy": {
+    "judge_model": "qwen2.5:7b-instruct",
+    "ollama_base_url": "http://ollama:11434",
+    "default_n": 3,
+    "request_timeout_seconds": 120,
+    "judge_retry_count": 1,
+    "passthrough_models": true,
+    "models": {
+      "bon/llama3.1:8b": {
+        "base_model": "llama3.1:8b",
+        "n": 3,
+        "sampling": {
+          "temperature": 0.8,
+          "top_p": 0.95
+        }
+      },
+      "bon/qwen2.5:14b": {
+        "base_model": "qwen2.5:14b",
+        "n": 4,
+        "sampling": {
+          "temperature": 0.7
+        }
+      },
+      "bon-pool/coding": {
+        "pool": "coding",
+        "n": 3
+      }
+    },
+    "pools": {
+      "coding": {
+        "candidates": [
+          {
+            "model": "qwen2.5-coder:14b",
+            "count": 2
+          },
+          {
+            "model": "deepseek-coder:6.7b",
+            "weight": 1
+          }
+        ]
+      }
+    }
+  }
+}
