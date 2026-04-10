@@ -50,7 +50,7 @@ class SyntheticModelConfig(BaseModel):
 
 
 class FileConfig(BaseModel):
-    judge_model: str = "qwen2.5:7b-instruct"
+    judge_model: str = "qwen3.5:35b"
     ollama_base_url: str = "http://ollama:11434"
     default_n: int = Field(default=3, ge=1)
     request_timeout_seconds: float = Field(default=120.0, gt=0)

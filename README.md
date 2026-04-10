@@ -55,6 +55,8 @@ cp config/stack-config.json.example config/stack-config.json
 
 2. Edit `config/stack-config.json` to tune ports, judge model, best-of-N settings, and model pools.
 
+The Docker-managed Ollama container now defaults to host port `11435` so it does not collide with a host Ollama already using `11434`.
+
 3. Start the full stack:
 
 ```bash

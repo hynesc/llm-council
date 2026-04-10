@@ -2,7 +2,7 @@ services:
   ollama:
     image: ollama/ollama:latest
     ports:
-      - "${HOST_OLLAMA_PORT:-11434}:11434"
+      - "${HOST_OLLAMA_PORT:-11435}:11434"
     volumes:
       - ollama-data:/root/.ollama
 

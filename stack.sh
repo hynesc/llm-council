@@ -48,7 +48,7 @@ proxy = data.get("proxy", {})
 proxy.setdefault("ollama_base_url", "http://ollama:11434")
 
 env_lines = [
-    f"HOST_OLLAMA_PORT={stack.get('host_ollama_port', 11434)}",
+    f"HOST_OLLAMA_PORT={stack.get('host_ollama_port', 11435)}",
     f"HOST_PROXY_PORT={stack.get('host_proxy_port', 8000)}",
     f"HOST_OPEN_WEBUI_PORT={stack.get('host_open_webui_port', 3000)}",
     f"OPEN_WEBUI_API_KEY={stack.get('open_webui_api_key', 'dummy')}",

@@ -100,13 +100,13 @@ Example structure:
 ```json
 {
   "stack": {
-    "host_ollama_port": 11434,
+    "host_ollama_port": 11435,
     "host_proxy_port": 8000,
     "host_open_webui_port": 3000,
     "open_webui_api_key": "dummy"
   },
   "proxy": {
-    "judge_model": "qwen2.5:7b-instruct",
+    "judge_model": "qwen3.5:35b",
     "ollama_base_url": "http://ollama:11434",
     "default_n": 3,
     "request_timeout_seconds": 120,
@@ -126,6 +126,8 @@ These settings affect Docker wiring and host access.
 - `host_proxy_port`: host port for the proxy API
 - `host_open_webui_port`: host port for Open WebUI
 - `open_webui_api_key`: API key used by Open WebUI when calling the proxy
+
+The default `host_ollama_port` is `11435`, which avoids conflicts with an existing host Ollama on `11434`.
 
 ### `proxy`
 
@@ -229,6 +231,8 @@ Behavior:
 - `bash stack.sh pull-models` pulls models into that container
 
 Use this mode if you want the entire stack self-contained in Docker.
+
+By default, this Docker Ollama is published on host port `11435`, while still listening on container port `11434`.
 
 ### Mode 2: Local Ollama Running On Your Host Machine
 
